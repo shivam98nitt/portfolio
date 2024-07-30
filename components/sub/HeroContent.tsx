@@ -47,6 +47,8 @@ const HeroContent = () => {
 
                 <motion.a
                     variants={slideInFromLeft(1)}
+                    href='/shivam-singh.pdf'
+                    download='Shivam Singh'
                     className='py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]'
                 >
                     Download Resume

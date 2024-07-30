@@ -15,7 +15,7 @@ const Navbar = () => {
                     className='cursor-pointer hover:animate-slowspin'
                 />
                 <span className='font-bold ml-[8px] hidden md:block text-gray-300'>
-                    constGenius
+                    Shivam Singh
                 </span>
             </a>
 
