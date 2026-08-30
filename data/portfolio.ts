@@ -4,7 +4,7 @@ export const portfolio = {
   ...content,
   personal: {
     ...content.personal,
-    resume: '/Shivam-Singh-Resume.html',
+    resume: '/Shivam-Singh-Resume.pdf',
   },
 };
 
