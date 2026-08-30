@@ -15,13 +15,37 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "64px 72px",
-          background:
-            "radial-gradient(circle at 12% 0%, rgba(117, 105, 255, .35), transparent 32%), radial-gradient(circle at 100% 85%, rgba(100, 255, 202, .22), transparent 30%), #09090b",
+          backgroundColor: "#09090b",
           color: "#f7f8fb",
           fontFamily: "Arial, sans-serif",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div
+          style={{
+            position: "absolute",
+            width: 520,
+            height: 520,
+            borderRadius: 520,
+            left: -180,
+            top: -250,
+            background: "rgba(117, 105, 255, .28)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            width: 440,
+            height: 440,
+            borderRadius: 440,
+            right: -170,
+            bottom: -220,
+            background: "rgba(100, 255, 202, .18)",
+          }}
+        />
+
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
             <div
               style={{
@@ -31,7 +55,7 @@ export default function Image() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "linear-gradient(145deg, #ffffff, #93f0cf)",
+                background: "#b8f6df",
                 color: "#09100e",
                 fontSize: 28,
                 fontWeight: 800,
@@ -59,7 +83,7 @@ export default function Image() {
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", maxWidth: 970 }}>
+        <div style={{ display: "flex", flexDirection: "column", maxWidth: 970, position: "relative" }}>
           <div style={{ fontSize: 70, lineHeight: 1.02, fontWeight: 800, letterSpacing: -3 }}>
             Building AI systems that ship, scale & solve.
           </div>
@@ -68,7 +92,7 @@ export default function Image() {
           </div>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", position: "relative" }}>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             {["100+ hrs saved/month", "10K+ docs/month", "80% faster HR resolution"].map((item) => (
               <span
