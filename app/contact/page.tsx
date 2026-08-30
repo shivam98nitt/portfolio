@@ -14,6 +14,8 @@ export default function ContactPage() {
     const subject = String(form.get('subject') || 'Portfolio enquiry');
     const message = String(form.get('message') || '');
     const body = `Hi Shivam,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`;
+
+    window.umami?.track?.('contact_action', { action: 'contact_form_submit' });
     window.location.href = `mailto:${portfolio.personal.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setStatus('Opening your email client…');
   }
@@ -25,10 +27,10 @@ export default function ContactPage() {
       <p className="intro">For roles, collaborations, AI platform work, agentic systems, RAG, multimodal AI or backend architecture, send a note here or reach me directly.</p>
       <div className="contact-grid">
         <aside className="contact-info">
-          <a href={`mailto:${portfolio.personal.email}`}><small>Email</small>{portfolio.personal.email}</a>
-          <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer"><small>LinkedIn</small>linkedin.com/in/shivam098 ↗</a>
-          <a href={portfolio.personal.github} target="_blank" rel="noreferrer"><small>GitHub</small>github.com/shivam98nitt ↗</a>
-          <a href={portfolio.personal.resume} target="_blank" rel="noreferrer"><small>Resume</small>Open PDF ↗</a>
+          <a href={`mailto:${portfolio.personal.email}`} data-umami-event="contact_action" data-umami-event-action="contact_page_email"><small>Email</small>{portfolio.personal.email}</a>
+          <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer" data-umami-event="linkedin_click" data-umami-event-location="contact_page"><small>LinkedIn</small>linkedin.com/in/shivam098 ↗</a>
+          <a href={portfolio.personal.github} target="_blank" rel="noreferrer" data-umami-event="github_click" data-umami-event-location="contact_page"><small>GitHub</small>github.com/shivam98nitt ↗</a>
+          <a href={portfolio.personal.resume} target="_blank" rel="noreferrer" data-umami-event="resume_open" data-umami-event-location="contact_page"><small>Resume</small>Open PDF ↗</a>
         </aside>
         <form className="contact-form" onSubmit={submit}>
           <label>Name<input name="name" required placeholder="Your name" /></label>
@@ -41,4 +43,12 @@ export default function ContactPage() {
       </div>
     </main>
   );
+}
+
+declare global {
+  interface Window {
+    umami?: {
+      track?: (event: string, data?: Record<string, string>) => void;
+    };
+  }
 }

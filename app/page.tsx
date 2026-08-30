@@ -14,13 +14,13 @@ export default function Home() {
           <p>{portfolio.personal.summary}</p>
           <div className="hero-actions">
             <a className="button primary" href="#work">Explore my work <span>↘</span></a>
-            <a className="button secondary" href={portfolio.personal.resume} target="_blank" rel="noreferrer">View resume <span>↗</span></a>
-            <a className="button secondary" href={`mailto:${portfolio.personal.email}`}>Email me <Arrow /></a>
+            <a className="button secondary" href={portfolio.personal.resume} target="_blank" rel="noreferrer" data-umami-event="resume_open" data-umami-event-location="hero">View resume <span>↗</span></a>
+            <a className="button secondary" href={`mailto:${portfolio.personal.email}`} data-umami-event="contact_action" data-umami-event-location="hero_email">Email me <Arrow /></a>
           </div>
           <div className="hero-recruiter-links" aria-label="Recruiter links">
-            <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-            <a href={portfolio.personal.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-            <Link href="/contact">Contact page ↗</Link>
+            <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer" data-umami-event="linkedin_click" data-umami-event-location="hero">LinkedIn ↗</a>
+            <a href={portfolio.personal.github} target="_blank" rel="noreferrer" data-umami-event="github_click" data-umami-event-location="hero">GitHub ↗</a>
+            <Link href="/contact" data-umami-event="contact_action" data-umami-event-location="hero_contact_page">Contact page ↗</Link>
           </div>
           <div className="hero-meta">
             <div><small>Based in</small><b>{portfolio.personal.location}</b></div>
@@ -73,7 +73,7 @@ export default function Home() {
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <div className="impact-row">{item.impact.map(x => <span key={x}>{x}</span>)}</div>
-              <div className="card-bottom"><div className="stack">{item.stack.map(x => <span key={x}>{x}</span>)}</div>{item.href && <a href={item.href} target="_blank" rel="noreferrer">View repository <Arrow /></a>}</div>
+              <div className="card-bottom"><div className="stack">{item.stack.map(x => <span key={x}>{x}</span>)}</div>{item.href && <a href={item.href} target="_blank" rel="noreferrer" data-umami-event="project_click" data-umami-event-project={item.title}>View repository <Arrow /></a>}</div>
             </article>
           ))}
         </div>
@@ -85,7 +85,7 @@ export default function Home() {
           {githubProjects.map(project => (
             <article key={project.href}>
               <h3>{project.name}</h3>
-              <div><span>{project.note}</span><a href={project.href} target="_blank" rel="noreferrer" className="button secondary">Open GitHub <Arrow /></a></div>
+              <div><span>{project.note}</span><a href={project.href} target="_blank" rel="noreferrer" className="button secondary" data-umami-event="project_click" data-umami-event-project={project.name}>Open GitHub <Arrow /></a></div>
             </article>
           ))}
         </div>
@@ -108,7 +108,7 @@ export default function Home() {
       </section>
 
       <section className="section contact-band">
-        <article><span>LET&apos;S BUILD</span><h2>Working on an ambitious AI product?</h2><p>Talk to me about production GenAI, agentic systems, multimodal AI, retrieval, MCP, backend architecture or AI platform engineering.</p><div><a className="button light" href={`mailto:${portfolio.personal.email}`}>Email me <Arrow /></a><a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={portfolio.personal.resume} target="_blank" rel="noreferrer">View resume ↗</a></div></article>
+        <article><span>LET&apos;S BUILD</span><h2>Working on an ambitious AI product?</h2><p>Talk to me about production GenAI, agentic systems, multimodal AI, retrieval, MCP, backend architecture or AI platform engineering.</p><div><a className="button light" href={`mailto:${portfolio.personal.email}`} data-umami-event="contact_action" data-umami-event-location="contact_band_email">Email me <Arrow /></a><a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer" data-umami-event="linkedin_click" data-umami-event-location="contact_band">LinkedIn ↗</a><a href={portfolio.personal.resume} target="_blank" rel="noreferrer" data-umami-event="resume_open" data-umami-event-location="contact_band">View resume ↗</a></div></article>
       </section>
     </main>
   );

@@ -65,13 +65,6 @@ This file tracks only the portfolio improvements that are still pending.
 
 - Add a custom domain when a suitable domain is selected.
 
-- Add privacy-friendly analytics for useful events such as:
-  - Portfolio visits
-  - Resume opens
-  - Project clicks
-  - GitHub clicks
-  - Contact actions
-
 ### UI polish
 
 - Consider a dark/light theme toggle only if it improves the current visual identity.
@@ -91,6 +84,5 @@ This file tracks only the portfolio improvements that are still pending.
 4. Dedicated AI Engineering expertise section
 5. Currently Building section
 6. GitHub proof-of-work improvements
-7. Analytics
-8. Custom domain
-9. Optional theme and micro-interaction polish
+7. Custom domain
+8. Optional theme and micro-interaction polish

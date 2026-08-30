@@ -84,15 +84,22 @@ const nav = [
 ];
 
 const recruiterLinks = [
-  ["Email", emailHref],
-  ["LinkedIn", linkedinHref],
-  ["GitHub", githubHref],
-  ["Resume", resumeHref],
+  { label: "Email", href: emailHref, event: "contact_action", action: "footer_email" },
+  { label: "LinkedIn", href: linkedinHref, event: "linkedin_click", action: "footer" },
+  { label: "GitHub", href: githubHref, event: "github_click", action: "footer" },
+  { label: "Resume", href: resumeHref, event: "resume_open", action: "footer" },
 ];
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="a203fa32-8545-445e-9dca-fed4f67dd4fd"
+        />
+      </head>
       <body>
         <div className="site-noise" />
         <header className="site-header">
@@ -104,19 +111,30 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div className="nav-links">
               {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
             </div>
-            <a className="nav-cta" href={resumeHref} target="_blank" rel="noreferrer">Resume <span>↗</span></a>
+            <a
+              className="nav-cta"
+              href={resumeHref}
+              target="_blank"
+              rel="noreferrer"
+              data-umami-event="resume_open"
+              data-umami-event-location="navbar"
+            >
+              Resume <span>↗</span>
+            </a>
           </nav>
         </header>
         {children}
         <footer className="footer recruiter-footer">
           <span>Shivam Singh · AI Engineer</span>
           <nav className="footer-links" aria-label="Recruiter links">
-            {recruiterLinks.map(([label, href]) => (
+            {recruiterLinks.map(({ label, href, event, action }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("http") || href.endsWith(".pdf") ? "_blank" : undefined}
                 rel={href.startsWith("http") || href.endsWith(".pdf") ? "noreferrer" : undefined}
+                data-umami-event={event}
+                data-umami-event-location={action}
               >
                 {label}{href.startsWith("http") || href.endsWith(".pdf") ? " ↗" : ""}
               </a>
