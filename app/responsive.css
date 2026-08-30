@@ -29,7 +29,8 @@ button, input, textarea, select, a {
 .skills-grid article,
 .education,
 .contact-info,
-.contact-form {
+.contact-form,
+.personal-card {
   min-width: 0;
 }
 
@@ -39,7 +40,8 @@ button, input, textarea, select, a {
 .contact-band h2,
 .contact-page h1,
 .work-card h3,
-.experience-card h3 {
+.experience-card h3,
+.personal-card h3 {
   overflow-wrap: anywhere;
   text-wrap: balance;
 }
@@ -49,7 +51,8 @@ button, input, textarea, select, a {
 .work-card > p,
 .contact-band p,
 .contact-page .intro,
-.experience-card li {
+.experience-card li,
+.personal-card p {
   overflow-wrap: anywhere;
 }
 
@@ -99,6 +102,83 @@ button, input, textarea, select, a {
 
 .footer-links a:hover {
   color: #f7f8fb;
+}
+
+/* About / personal section */
+.personal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: 14px;
+}
+
+.personal-card {
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: linear-gradient(165deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+  padding: 28px;
+}
+
+.personal-intro {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 26px;
+  align-items: center;
+}
+
+.personal-avatar {
+  width: 130px;
+  aspect-ratio: 1;
+  border-radius: 30px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg,#fff,#99f0d4 50%,#abb1ff);
+  color: #0b1010;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -.06em;
+}
+
+.personal-card h3 {
+  margin: 12px 0 10px;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  letter-spacing: -.045em;
+  line-height: 1.05;
+}
+
+.personal-card p {
+  margin: 0;
+  color: #969ca7;
+  line-height: 1.75;
+}
+
+.philosophy-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.philosophy-card blockquote {
+  margin: 20px 0 18px;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -.055em;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.philosophy-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.philosophy-tags span {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font: 9px 'DM Mono';
+  color: #aeb4bf;
 }
 
 /* Large desktop / ultrawide */
@@ -186,7 +266,8 @@ button, input, textarea, select, a {
     gap: 20px;
   }
 
-  .skills-grid {
+  .skills-grid,
+  .personal-grid {
     grid-template-columns: 1fr;
   }
 
@@ -461,9 +542,25 @@ button, input, textarea, select, a {
   .experience-card,
   .skills-grid article,
   .contact-info,
-  .contact-form {
+  .contact-form,
+  .personal-card {
     padding: 18px;
     border-radius: 20px;
+  }
+
+  .personal-intro {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .personal-avatar {
+    width: 96px;
+    border-radius: 24px;
+    font-size: 28px;
+  }
+
+  .philosophy-card blockquote {
+    font-size: clamp(2rem, 11vw, 2.8rem);
   }
 
   .experience-card h3 {
