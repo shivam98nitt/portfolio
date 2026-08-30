@@ -1,10 +1,12 @@
 import { portfolio as content } from './content';
 
+const githubPagesBasePath = '/portfolio';
+
 export const portfolio = {
   ...content,
   personal: {
     ...content.personal,
-    resume: '/Shivam-Singh-Resume.pdf',
+    resume: `${githubPagesBasePath}/Shivam-Singh-Resume.pdf`,
   },
 };
 
