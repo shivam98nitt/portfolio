@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shivam Singh — Portfolio
 
-## Getting Started
+Ultra-modern Next.js portfolio focused on production AI engineering, measurable impact, open-source work and backend/system-design projects.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customize later
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The main portfolio content lives in:
 
-## Learn More
+```text
+data/content.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+Add future employers to `experience`, projects to `work`, skills to `skills`, and edit personal/contact details under `personal`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`data/portfolio.ts` only applies site-level overrides such as the downloadable resume path.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Main pages
 
-## Deploy on Vercel
+- `/` — portfolio home, selected work, experience, skills, education
+- `/contact` — contact details and message composer
+- `/Shivam-Singh-Resume.html` — downloadable/printable resume; use the button inside it to save as PDF
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Featured work
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The portfolio combines resume-backed production work with selected public repositories:
+
+- Inbound Material Digitization System
+- HR Assistant — Enterprise RAG
+- Hyper-Personalised Gift Recommendation Agent
+- Taxi Dispatch Backend
+- Medical Record Storage System
+
+## Deployment
+
+Works with standard Next.js deployments such as Vercel. No database or server-side secrets are required for the portfolio itself.

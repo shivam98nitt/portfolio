@@ -1,0 +1,90 @@
+export const portfolio = {
+  personal: {
+    name: "Shivam Singh",
+    title: "AI Engineer",
+    location: "Bangalore, India",
+    email: "shivamsingh24680@gmail.com",
+    phone: "+91 8707201817",
+    linkedin: "https://linkedin.com/in/shivam098",
+    github: "https://github.com/shivam98nitt",
+    resume: "/Shivam-Singh-Resume.pdf",
+    summary: "AI Engineer with 3+ years of experience building production-grade Generative AI systems and scalable backend services across LLMs, RAG, vector search, multimodal AI, agentic workflows and cloud-native deployments.",
+  },
+  metrics: [
+    { value: "100+", label: "hours saved / month" },
+    { value: "10K+", label: "documents / month" },
+    { value: "80%", label: "faster HR query resolution" },
+    { value: "70%", label: "faster supply-chain intake" },
+  ],
+  experience: [
+    {
+      company: "Raytheon Technologies",
+      role: "Associate Software Engineer",
+      location: "Bangalore, India",
+      period: "Feb 2023 — Present",
+      bullets: [
+        "Designed and deployed scalable document digitization and GenAI extraction systems for enterprise workflows.",
+        "Integrated Qwen2B Vision-Language Models for tables, handwritten fields and multi-format invoices, improving extraction accuracy by 40%.",
+        "Built an enterprise HR assistant with LLaMA 3.1-70B, LangChain, RAG, ChromaDB and LangGraph, reducing average query-resolution time by 80%.",
+        "Built secure REST APIs, JWT/SSO integrations, SQL persistence, real-time telemetry pipelines and cloud-native services on AWS.",
+      ],
+    },
+  ],
+  work: [
+    {
+      title: "Inbound Material Digitization",
+      type: "Production GenAI · Enterprise",
+      description: "Multimodal document-intelligence pipeline for inbound raw-material documents, with image normalization, prompt-driven extraction, structured JSON validation and enterprise APIs.",
+      impact: ["40% extraction accuracy gain", "60% less manual correction", "300+ internal users", "20+ vendors"],
+      stack: ["Qwen2B VLM", "Node.js", "Express", "AWS", "SQL"],
+      featured: true,
+    },
+    {
+      title: "HR Assistant — Enterprise RAG",
+      type: "RAG · Agentic AI",
+      description: "Enterprise assistant for natural-language querying of internal HR policies, including multimodal ingestion, vector search, sentence-window retrieval and stateful LangGraph conversations.",
+      impact: ["80% faster resolution", "35% relevance improvement"],
+      stack: ["LLaMA 3.1-70B", "LangChain", "LangGraph", "ChromaDB", "OCR"],
+      featured: true,
+    },
+    {
+      title: "Hyper-Personalised Gift Recommendation Agent",
+      type: "Open Source · Agentic AI",
+      description: "Multi-step LangGraph agent that extracts safe profile signals, searches products, validates budget and appropriateness, ranks recommendations, generates messages and supports human review.",
+      impact: ["Human-in-the-loop", "Bulk recommendation API", "Guardrailed reasoning"],
+      stack: ["Python", "LangGraph", "FastAPI", "OpenAI / Anthropic", "Product Search"],
+      href: "https://github.com/shivam98nitt/Hyper-Personalised-Gift-Recommendation-Agent",
+    },
+    {
+      title: "Taxi Dispatch Backend",
+      type: "Open Source · Backend / System Design",
+      description: "NestJS backend organized around authentication, dispatch, drivers, live driver location, ride lifecycle, maps, notifications and sockets for a ride-hailing domain.",
+      impact: ["Real-time architecture", "Modular domain design", "Location + dispatch flows"],
+      stack: ["NestJS", "TypeScript", "WebSockets", "Maps", "Database"],
+      href: "https://github.com/shivam98nitt/taxiTeamEUBackend",
+    },
+    {
+      title: "Medical Record Storage System",
+      type: "Open Source · Blockchain / Full Stack",
+      description: "Medical-record storage project with smart-contract, migration, frontend and test layers, demonstrating an earlier exploration of decentralized application architecture.",
+      impact: ["Smart contracts", "Frontend integration", "Truffle migrations"],
+      stack: ["Solidity", "Truffle", "JavaScript", "Web3"],
+      href: "https://github.com/shivam98nitt/Medical-Record-Storage-System",
+    },
+  ],
+  skills: {
+    "Generative AI": ["LLMs", "RAG", "Multimodal AI", "VLMs", "Agentic AI", "Embeddings", "Fine-Tuning", "NLP"],
+    "AI Frameworks": ["LangChain", "LangGraph", "PyTorch", "TensorFlow", "Hugging Face", "Scikit-learn"],
+    "Search & Data": ["ChromaDB", "FAISS", "Pinecone", "Weaviate", "MySQL", "MongoDB", "Redis", "SQL"],
+    "Engineering": ["Python", "TypeScript", "JavaScript", "C++", "Node.js", "FastAPI", "React", "REST APIs"],
+    "Cloud & DevOps": ["AWS", "Docker", "Kubernetes", "Terraform", "GitHub Actions", "CI/CD"],
+  },
+  education: {
+    degree: "Master of Computer Applications (MCA)",
+    school: "National Institute of Technology, Tiruchirappalli (NIT Trichy)",
+    period: "Jul 2020 — Jun 2023",
+    gpa: "8.01 / 10.0",
+  },
+};
+
+export type Portfolio = typeof portfolio;

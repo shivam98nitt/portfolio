@@ -1,27 +1,33 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
-import StarCanvas from "@/components/main/StarCanvas";
-import Navbar from "@/components/main/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shivam Portfolio",
-  description: "This is my portfolio",
+  title: "Shivam Singh — AI Engineer",
+  description: "AI Engineer building production GenAI, RAG, VLM and agentic AI systems.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const nav = [
+  ["Work", "/#work"],
+  ["Experience", "/#experience"],
+  ["Skills", "/#skills"],
+  ["Contact", "/contact"],
+];
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#030014] overflow-y-scroll overflow-x-hidden`}>
-        <StarCanvas/>
-        <Navbar/>
+      <body>
+        <div className="site-noise" />
+        <header className="site-header">
+          <nav className="nav-shell">
+            <Link href="/" className="brand"><span className="brand-mark">SS</span><span><b>Shivam Singh</b><small>AI Engineer</small></span></Link>
+            <div className="nav-links">{nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</div>
+            <a className="nav-cta" href="/Shivam-Singh-Resume.pdf" download>Resume <span>↓</span></a>
+          </nav>
+        </header>
         {children}
+        <footer className="footer"><span>Shivam Singh · AI Engineer</span><span>Built for the next chapter.</span></footer>
       </body>
     </html>
   );
