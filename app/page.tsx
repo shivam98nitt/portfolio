@@ -15,7 +15,12 @@ export default function Home() {
           <div className="hero-actions">
             <a className="button primary" href="#work">Explore my work <span>↘</span></a>
             <a className="button secondary" href={portfolio.personal.resume} target="_blank" rel="noreferrer">View resume <span>↗</span></a>
-            <Link className="button secondary" href="/contact">Contact me <Arrow /></Link>
+            <a className="button secondary" href={`mailto:${portfolio.personal.email}`}>Email me <Arrow /></a>
+          </div>
+          <div className="hero-recruiter-links" aria-label="Recruiter links">
+            <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href={portfolio.personal.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+            <Link href="/contact">Contact page ↗</Link>
           </div>
           <div className="hero-meta">
             <div><small>Based in</small><b>{portfolio.personal.location}</b></div>
@@ -80,7 +85,7 @@ export default function Home() {
       </section>
 
       <section className="section contact-band">
-        <article><span>LET&apos;S BUILD</span><h2>Working on an ambitious AI product?</h2><p>Talk to me about production GenAI, agentic systems, multimodal AI, retrieval, MCP, backend architecture or AI platform engineering.</p><div><Link className="button light" href="/contact">Start a conversation <Arrow /></Link><a href={portfolio.personal.resume} target="_blank" rel="noreferrer">View resume ↗</a></div></article>
+        <article><span>LET&apos;S BUILD</span><h2>Working on an ambitious AI product?</h2><p>Talk to me about production GenAI, agentic systems, multimodal AI, retrieval, MCP, backend architecture or AI platform engineering.</p><div><a className="button light" href={`mailto:${portfolio.personal.email}`}>Email me <Arrow /></a><a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={portfolio.personal.resume} target="_blank" rel="noreferrer">View resume ↗</a></div></article>
       </section>
     </main>
   );
