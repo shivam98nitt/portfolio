@@ -1,0 +1,29 @@
+.mobile-chess-link {
+  display: none;
+  min-height: 40px;
+  padding: 0 11px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  color: var(--text);
+  background: var(--surface-soft);
+  font-size: 11px;
+  font-weight: 800;
+  transition: transform .18s ease, border-color .18s ease, background-color .18s ease;
+}
+
+.mobile-chess-link:active { transform: scale(.97); }
+
+@media (max-width: 920px) {
+  .mobile-chess-link { display: inline-flex; }
+}
+
+@media (max-width: 520px) {
+  .mobile-chess-link { width: 40px; padding: 0; justify-content: center; font-size: 17px; }
+  .mobile-chess-link span { display: none; }
+}
+
+@media (max-width: 360px) {
+  .mobile-chess-link { width: 36px; min-height: 38px; }
+}

@@ -4,6 +4,7 @@ import { RevealManager, ScrollProgress, ThemeToggle } from "./ui-effects";
 import "./globals.css";
 import "./responsive.css";
 import "./ui-polish.css";
+import "./chess-nav.css";
 
 const siteUrl = "https://shivam98nitt.github.io";
 const portfolioPath = "/portfolio";
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
   },
 };
 
-const nav = [["Work", "/#work"], ["Experience", "/#experience"], ["Skills", "/#skills"], ["Contact", "/contact"]];
+const nav = [["Work", "/#work"], ["Experience", "/#experience"], ["Skills", "/#skills"], ["Chess", "/chess"], ["Contact", "/contact"]];
 const recruiterLinks = [
   { label: "Email", href: emailHref, event: "contact_action", action: "footer_email" },
   { label: "LinkedIn", href: linkedinHref, event: "linkedin_click", action: "footer" },
@@ -101,8 +102,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <span className="brand-mark">SS</span>
               <span className="brand-copy"><b>Shivam Singh</b><small>AI Engineer</small></span>
             </Link>
-            <div className="nav-links">{nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</div>
+            <div className="nav-links">{nav.map(([label, href]) => <Link key={href} href={href} data-umami-event={label === 'Chess' ? 'chess_open' : undefined}>{label}</Link>)}</div>
             <div className="nav-actions">
+              <Link href="/chess" className="mobile-chess-link" data-umami-event="chess_open" aria-label="Open chess playground">♞ <span>Chess</span></Link>
               <ThemeToggle />
               <a className="nav-cta" href={resumeHref} target="_blank" rel="noreferrer" data-umami-event="resume_open" data-umami-event-location="navbar">Resume <span>↗</span></a>
             </div>
