@@ -1,3 +1,5 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const portfolio = {
   personal: {
     name: "Shivam Singh",
@@ -7,7 +9,7 @@ export const portfolio = {
     phone: "+91 8707201817",
     linkedin: "https://linkedin.com/in/shivam098",
     github: "https://github.com/shivam98nitt",
-    resume: "/Shivam-Singh-Resume.pdf",
+    resume: `${basePath}/Shivam-Singh-Resume.html`,
     summary: "AI Engineer with 3+ years of experience building production-grade Generative AI systems and scalable backend services across LLMs, RAG, vector search, multimodal AI, agentic workflows and cloud-native deployments.",
   },
   metrics: [
