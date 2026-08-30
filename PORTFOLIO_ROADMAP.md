@@ -28,10 +28,7 @@ This file tracks only the portfolio improvements that are still pending.
   - Hyper-Personalised Gift Recommendation Agent
   - Other strong backend/system-design projects where useful
 
-- Add a stronger personal section.
-  - Professional profile photo
-  - Short About Me section
-  - Engineering philosophy / what I like building
+- Add a professional profile photo to the About Me section.
 
 ### Project presentation
 
@@ -90,7 +87,7 @@ This file tracks only the portfolio improvements that are still pending.
 
 1. Detailed case-study pages
 2. Architecture diagrams and project visuals
-3. Profile photo and About Me section
+3. Professional profile photo
 4. Dedicated AI Engineering expertise section
 5. Currently Building section
 6. GitHub proof-of-work improvements
