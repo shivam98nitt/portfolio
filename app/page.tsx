@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { portfolio } from "@/data/portfolio";
+import { githubProjects } from "@/data/github-projects";
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
@@ -50,6 +51,18 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section" id="github">
+        <header className="section-head"><div><span>GITHUB ARCHIVE</span><h2>More things I&apos;ve built.</h2></div><p>The case studies above are deliberately curated. This archive gives a broader view of public projects, experiments, mobile work, backend practice and engineering exercises.</p></header>
+        <div className="skills-grid">
+          {githubProjects.map(project => (
+            <article key={project.href}>
+              <h3>{project.name}</h3>
+              <div><span>{project.note}</span><a href={project.href} target="_blank" rel="noreferrer" className="button secondary">Open GitHub <Arrow /></a></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="section" id="experience">
         <header className="section-head"><div><span>EXPERIENCE</span><h2>Production constraints. Real outcomes.</h2></div><p>Enterprise software and AI systems designed around reliability, measurable impact and operational adoption.</p></header>
         <div className="timeline">
@@ -67,7 +80,7 @@ export default function Home() {
       </section>
 
       <section className="section contact-band">
-        <article><span>LET'S BUILD</span><h2>Working on an ambitious AI product?</h2><p>Talk to me about production GenAI, agentic systems, multimodal AI, retrieval, MCP, backend architecture or AI platform engineering.</p><div><Link className="button light" href="/contact">Start a conversation <Arrow /></Link><a href={portfolio.personal.resume} download>Download resume ↓</a></div></article>
+        <article><span>LET&apos;S BUILD</span><h2>Working on an ambitious AI product?</h2><p>Talk to me about production GenAI, agentic systems, multimodal AI, retrieval, MCP, backend architecture or AI platform engineering.</p><div><Link className="button light" href="/contact">Start a conversation <Arrow /></Link><a href={portfolio.personal.resume} download>Download resume ↓</a></div></article>
       </section>
     </main>
   );
