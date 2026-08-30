@@ -28,7 +28,7 @@ export default function ContactPage() {
           <a href={`mailto:${portfolio.personal.email}`}><small>Email</small>{portfolio.personal.email}</a>
           <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer"><small>LinkedIn</small>linkedin.com/in/shivam098 ↗</a>
           <a href={portfolio.personal.github} target="_blank" rel="noreferrer"><small>GitHub</small>github.com/shivam98nitt ↗</a>
-          <a href={portfolio.personal.resume} download><small>Resume</small>Download PDF ↓</a>
+          <a href={portfolio.personal.resume} target="_blank" rel="noreferrer"><small>Resume</small>Open PDF ↗</a>
         </aside>
         <form className="contact-form" onSubmit={submit}>
           <label>Name<input name="name" required placeholder="Your name" /></label>
@@ -36,7 +36,7 @@ export default function ContactPage() {
           <label>Subject<input name="subject" required placeholder="What would you like to discuss?" /></label>
           <label>Message<textarea name="message" required placeholder="Tell me about the role, product or problem…" /></label>
           <button className="button primary" type="submit">Compose email ↗</button>
-          {status && <p style={{color:'#8e949f',fontSize:12}}>{status}</p>}
+          {status && <p className="form-status">{status}</p>}
         </form>
       </div>
     </main>
