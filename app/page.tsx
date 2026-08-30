@@ -41,6 +41,29 @@ export default function Home() {
         {portfolio.metrics.map((m) => <article key={m.label}><strong>{m.value}</strong><span>{m.label}</span></article>)}
       </section>
 
+      <section className="section personal-section" id="about">
+        <header className="section-head">
+          <div><span>ABOUT ME</span><h2>Clean systems over clever messes.</h2></div>
+          <p>I care about building AI and backend systems that stay understandable after they reach production—not just systems that work once in a demo.</p>
+        </header>
+        <div className="personal-grid">
+          <article className="personal-card personal-intro">
+            <div className="personal-avatar" aria-label="Profile photo placeholder">SS</div>
+            <div>
+              <span className="kicker">WHO I AM</span>
+              <h3>AI engineer focused on production systems.</h3>
+              <p>I enjoy turning ambiguous product problems into reliable systems across GenAI, RAG, agents, multimodal AI, APIs and backend architecture. I like shipping things that are useful, measurable and maintainable.</p>
+            </div>
+          </article>
+          <article className="personal-card philosophy-card">
+            <span className="kicker">ENGINEERING PHILOSOPHY</span>
+            <blockquote>“I don’t like dirty code.”</blockquote>
+            <p>For me, that means code should be readable, modular and boring in the best possible way. Clear boundaries, sensible abstractions, small functions, predictable behavior and fewer hidden surprises beat clever shortcuts that make future changes painful.</p>
+            <div className="philosophy-tags"><span>Readable</span><span>Maintainable</span><span>Testable</span><span>Simple</span></div>
+          </article>
+        </div>
+      </section>
+
       <section className="section" id="work">
         <header className="section-head"><div><span>SELECTED WORK</span><h2>Systems with measurable impact.</h2></div><p>Production work and public engineering projects spanning multimodal AI, enterprise RAG, agents, backend architecture and decentralized systems.</p></header>
         <div className="work-grid">
