@@ -21,9 +21,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="site-noise" />
         <header className="site-header">
           <nav className="nav-shell">
-            <Link href="/" className="brand"><span className="brand-mark">SS</span><span><b>Shivam Singh</b><small>AI Engineer</small></span></Link>
-            <div className="nav-links">{nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</div>
-            <a className="nav-cta" href="/Shivam-Singh-Resume.pdf" download>Resume <span>↓</span></a>
+            <Link href="/" className="brand">
+              <span className="brand-mark">SS</span>
+              <span className="brand-copy"><b>Shivam Singh</b><small>AI Engineer</small></span>
+            </Link>
+            <div className="nav-links">
+              {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
+            </div>
+            <a className="nav-cta" href="/Shivam-Singh-Resume.pdf" target="_blank" rel="noreferrer">Resume <span>↗</span></a>
           </nav>
         </header>
         {children}
