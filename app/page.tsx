@@ -14,7 +14,7 @@ export default function Home() {
           <p>{portfolio.personal.summary}</p>
           <div className="hero-actions">
             <a className="button primary" href="#work">Explore my work <span>↘</span></a>
-            <a className="button secondary" href={portfolio.personal.resume} download>Download resume <span>↓</span></a>
+            <a className="button secondary" href={portfolio.personal.resume} target="_blank" rel="noreferrer">View resume <span>↗</span></a>
             <Link className="button secondary" href="/contact">Contact me <Arrow /></Link>
           </div>
           <div className="hero-meta">
@@ -80,7 +80,7 @@ export default function Home() {
       </section>
 
       <section className="section contact-band">
-        <article><span>LET&apos;S BUILD</span><h2>Working on an ambitious AI product?</h2><p>Talk to me about production GenAI, agentic systems, multimodal AI, retrieval, MCP, backend architecture or AI platform engineering.</p><div><Link className="button light" href="/contact">Start a conversation <Arrow /></Link><a href={portfolio.personal.resume} download>Download resume ↓</a></div></article>
+        <article><span>LET&apos;S BUILD</span><h2>Working on an ambitious AI product?</h2><p>Talk to me about production GenAI, agentic systems, multimodal AI, retrieval, MCP, backend architecture or AI platform engineering.</p><div><Link className="button light" href="/contact">Start a conversation <Arrow /></Link><a href={portfolio.personal.resume} target="_blank" rel="noreferrer">View resume ↗</a></div></article>
       </section>
     </main>
   );
