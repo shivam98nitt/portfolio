@@ -15,6 +15,8 @@ const nav = [
   ["Contact", "/contact"],
 ];
 
+const resumeHref = "/portfolio/Shivam-Singh-Resume.pdf";
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
@@ -29,7 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div className="nav-links">
               {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
             </div>
-            <a className="nav-cta" href="/Shivam-Singh-Resume.pdf" target="_blank" rel="noreferrer">Resume <span>↗</span></a>
+            <a className="nav-cta" href={resumeHref} target="_blank" rel="noreferrer">Resume <span>↗</span></a>
           </nav>
         </header>
         {children}
