@@ -66,14 +66,6 @@ This file tracks only the portfolio improvements that are still pending.
 
 ### Recruiter and sharing experience
 
-- Improve recruiter-focused calls to action and make Resume, LinkedIn, GitHub, and Email easy to access across the site.
-
-- Add SEO metadata and social-sharing previews.
-  - Open Graph metadata
-  - Twitter/X card metadata
-  - Portfolio preview image
-  - Better page descriptions
-
 - Add a custom domain when a suitable domain is selected.
 
 - Add privacy-friendly analytics for useful events such as:
@@ -101,9 +93,7 @@ This file tracks only the portfolio improvements that are still pending.
 3. Profile photo and About Me section
 4. Dedicated AI Engineering expertise section
 5. Currently Building section
-6. Recruiter / CTA improvements
-7. SEO and social previews
-8. GitHub proof-of-work improvements
-9. Analytics
-10. Custom domain
-11. Optional theme and micro-interaction polish
+6. GitHub proof-of-work improvements
+7. Analytics
+8. Custom domain
+9. Optional theme and micro-interaction polish
