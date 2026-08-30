@@ -65,17 +65,6 @@ This file tracks only the portfolio improvements that are still pending.
 
 - Add a custom domain when a suitable domain is selected.
 
-### UI polish
-
-- Consider a dark/light theme toggle only if it improves the current visual identity.
-
-- Add restrained micro-interactions where useful.
-  - Card hover states
-  - Section reveal transitions
-  - Scroll progress
-  - Small interaction feedback
-  - Respect reduced-motion preferences
-
 ## Recommended implementation order
 
 1. Detailed case-study pages
@@ -85,4 +74,3 @@ This file tracks only the portfolio improvements that are still pending.
 5. Currently Building section
 6. GitHub proof-of-work improvements
 7. Custom domain
-8. Optional theme and micro-interaction polish
