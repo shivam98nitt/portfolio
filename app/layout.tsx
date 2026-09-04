@@ -4,6 +4,7 @@ import { RevealManager, ScrollProgress, ThemeToggle } from "./ui-effects";
 import "./globals.css";
 import "./responsive.css";
 import "./ui-polish.css";
+import "./profile-photo.css";
 import "./chess-nav.css";
 
 const siteUrl = "https://shivam98nitt.github.io";
