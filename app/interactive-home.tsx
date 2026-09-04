@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useMemo, useState } from 'react';
@@ -52,7 +53,13 @@ export default function InteractiveHome() {
 
         <aside className="hero-visual compact-visual">
           <div className="visual-top"><span>PROFILE / 2026</span><i>ACTIVE</i></div>
-          <div className="portrait-orbit"><div className="avatar">SS</div><div className="ring ring-a"/><div className="ring ring-b"/></div>
+          <div className="portrait-orbit">
+            <div className="avatar profile-avatar">
+              <Image src="/profile-photo.svg" alt="Shivam Singh" fill priority sizes="(max-width: 600px) 88px, 100px" />
+            </div>
+            <div className="ring ring-a"/>
+            <div className="ring ring-b"/>
+          </div>
           <div className="terminal interactive-terminal">
             <div className="terminal-bar"><span/><span/><span/><small>shivam@ai-engineering</small></div>
             <code><em>$</em> role<br/><b>AI Engineer</b><br/><em>$</em> current_focus<br/><b>GenAI · RAG · VLM · Agents</b><br/><em>$</em> production_ready<br/><strong>true</strong></code>
