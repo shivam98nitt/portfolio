@@ -8,6 +8,8 @@ import { portfolio } from '@/data/portfolio';
 import { githubProjects } from '@/data/github-projects';
 import HeroNetwork from './hero-network';
 import AISystemVisualization from './ai-system-visualization';
+import TechnologyUniverse from './technology-universe';
+import ScrollStorytelling from './scroll-storytelling';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
@@ -135,12 +137,28 @@ export default function InteractiveHome() {
         </div>
       </section>
 
+      <section className="section compact-section phase-three-section" id="technology-universe">
+        <header className="section-head compact-head">
+          <div><span>TECHNOLOGY UNIVERSE</span><h2>My stack as a connected system, not a keyword wall.</h2></div>
+          <p>Select a technology to see its engineering role and the work it connects to.</p>
+        </header>
+        <TechnologyUniverse reducedMotion={Boolean(reduceMotion)} />
+      </section>
+
       <section className="section compact-section" id="architecture">
         <header className="section-head compact-head">
           <div><span>HOW I BUILD AI SYSTEMS</span><h2>From user intent to production infrastructure.</h2></div>
           <p>Tap any node to inspect the layer, technologies and production evidence behind the architecture.</p>
         </header>
         <AISystemVisualization reducedMotion={Boolean(reduceMotion)} />
+      </section>
+
+      <section className="section compact-section phase-three-story" id="process">
+        <header className="section-head compact-head">
+          <div><span>ENGINEERING PROCESS</span><h2>How I move from ambiguity to something production can trust.</h2></div>
+          <p>A lightweight scroll story showing the decisions behind the code, not just the finished stack.</p>
+        </header>
+        <ScrollStorytelling reducedMotion={Boolean(reduceMotion)} />
       </section>
 
       <section className="section compact-section phase-two-projects" id="work">
