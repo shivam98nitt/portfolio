@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useReducedMotion } from 'framer-motion';
 import { portfolio } from '@/data/portfolio';
 import HeroNetwork from './hero-network';
@@ -58,7 +57,7 @@ export default function InteractiveHome() {
         >
           <div className="v2-profile-top"><span>PROFILE / 2026</span><span>ACTIVE</span></div>
           <div className="v2-profile-orbit">
-            <div className="avatar profile-avatar"><Image src="/yellow-kurta-profile.jpg" alt="Shivam Singh" fill priority sizes="118px" /></div>
+            <div className="avatar profile-avatar" role="img" aria-label="Profile portrait" />
             <div className="v2-profile-ring a" />
             <div className="v2-profile-ring b" />
           </div>
