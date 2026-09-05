@@ -7,12 +7,12 @@ import HeroNetwork from './hero-network';
 import CommandPalette from './command-palette';
 import WorkUniverse from './work-universe';
 import SystemLab from './system-lab';
+import ProfileHub from './profile-hub';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
 export default function InteractiveHome() {
   const reduceMotion = useReducedMotion();
-  const currentRole = portfolio.experience[0];
 
   return (
     <main className="v2-main">
@@ -86,27 +86,10 @@ export default function InteractiveHome() {
 
       <section className="v2-section" id="about">
         <header className="v2-stage-head">
-          <div><small>03 / PROFILE</small><h2>About, experience and contact — without another long page.</h2></div>
-          <p>High-signal profile information stays visible; deeper interaction moves into the Profile Hub in Phase 4.</p>
+          <div><small>03 / PROFILE HUB</small><h2>Everything a recruiter needs, in one compact surface.</h2></div>
+          <p>About, current experience and contact details live behind tabs instead of three more vertical sections.</p>
         </header>
-        <div className="v2-profile-hub">
-          <article className="v2-profile-summary">
-            <small className="kicker">SHIVAM SINGH</small>
-            <h3>AI Engineer</h3>
-            <p>Bangalore, India · Production GenAI, RAG, agents, multimodal AI and scalable backend systems.</p>
-            <div className="v2-inline-links">
-              <a href={portfolio.personal.resume} target="_blank" rel="noreferrer">Resume ↗</a>
-              <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-              <a href={portfolio.personal.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-              <a href={`mailto:${portfolio.personal.email}`}>Email ↗</a>
-            </div>
-          </article>
-          <div className="v2-profile-panel">
-            <article><small>Current</small><strong>{currentRole.role} · {currentRole.company}</strong><span>{currentRole.period} · {currentRole.location}</span></article>
-            <article><small>Education</small><strong>{portfolio.education.school}</strong><span>{portfolio.education.degree} · {portfolio.education.period}</span></article>
-            <article><small>Engineering philosophy</small><strong>Readable boundaries. Useful systems. Measurable outcomes.</strong><span>Keep the implementation simple enough to maintain and strong enough to operate.</span></article>
-          </div>
-        </div>
+        <ProfileHub reducedMotion={Boolean(reduceMotion)} />
       </section>
     </main>
   );
