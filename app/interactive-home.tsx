@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { useReducedMotion } from 'framer-motion';
 import { portfolio } from '@/data/portfolio';
 import HeroNetwork from './hero-network';
-import AISystemVisualization from './ai-system-visualization';
 import CommandPalette from './command-palette';
 import WorkUniverse from './work-universe';
+import SystemLab from './system-lab';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
@@ -78,10 +78,10 @@ export default function InteractiveHome() {
 
       <section className="v2-section" id="system">
         <header className="v2-stage-head">
-          <div><small>02 / AI SYSTEM LAB</small><h2>How the intelligence becomes a production system.</h2></div>
-          <p>Phase 3 will turn this into one morphing System / Stack / Process lab instead of separate architecture concepts.</p>
+          <div><small>02 / AI SYSTEM LAB</small><h2>One system. Three ways to understand how I build.</h2></div>
+          <p>Switch between System, Stack and Process. The same spatial interface reorganizes instead of sending you through three separate sections.</p>
         </header>
-        <div className="v2-system-preview"><AISystemVisualization reducedMotion={Boolean(reduceMotion)} /></div>
+        <SystemLab reducedMotion={Boolean(reduceMotion)} />
       </section>
 
       <section className="v2-section" id="about">
