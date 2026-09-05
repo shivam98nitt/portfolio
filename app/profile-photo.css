@@ -5,9 +5,9 @@
   padding: 0;
   border: 2px solid rgba(146, 243, 207, .55);
   background-color: var(--surface-strong);
-  background-image: url('https://avatars.githubusercontent.com/u/25545488?v=4');
+  background-image: url('/portfolio/yellow-kurta-profile.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: 50% 38%;
   background-repeat: no-repeat;
   box-shadow: 0 16px 42px rgba(0, 0, 0, .28), 0 0 0 6px rgba(146, 243, 207, .06);
 }
