@@ -43,23 +43,20 @@ function buildNetwork(count: number): NetworkData {
       const by = points[b * 3 + 1];
       const bz = points[b * 3 + 2];
       const distance = Math.hypot(ax - bx, ay - by, az - bz);
-
-      if (distance < maxDistance) {
-        segments.push(ax, ay, az, bx, by, bz);
-      }
+      if (distance < maxDistance) segments.push(ax, ay, az, bx, by, bz);
     }
   }
 
   return { points, lines: new Float32Array(segments) };
 }
 
-function Network({ compact, reducedMotion }: { compact: boolean; reducedMotion: boolean }) {
+function Network({ compact, reducedMotion, active }: { compact: boolean; reducedMotion: boolean; active: boolean }) {
   const group = useRef<THREE.Group>(null);
   const pointerTarget = useRef({ x: 0, y: 0 });
-  const data = useMemo(() => buildNetwork(compact ? 30 : 58), [compact]);
+  const data = useMemo(() => buildNetwork(compact ? 28 : 54), [compact]);
 
   useEffect(() => {
-    if (reducedMotion || compact) return undefined;
+    if (reducedMotion || compact || !active) return undefined;
 
     const handlePointerMove = (event: PointerEvent) => {
       pointerTarget.current.x = (event.clientX / window.innerWidth - 0.5) * 2;
@@ -68,10 +65,10 @@ function Network({ compact, reducedMotion }: { compact: boolean; reducedMotion: 
 
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
     return () => window.removeEventListener('pointermove', handlePointerMove);
-  }, [compact, reducedMotion]);
+  }, [active, compact, reducedMotion]);
 
   useFrame(({ clock }) => {
-    if (!group.current || reducedMotion) return;
+    if (!group.current || reducedMotion || !active) return;
 
     const targetY = pointerTarget.current.x * 0.11;
     const targetX = -pointerTarget.current.y * 0.07;
@@ -84,40 +81,23 @@ function Network({ compact, reducedMotion }: { compact: boolean; reducedMotion: 
   return (
     <group ref={group} rotation={[0.03, -0.08, 0]}>
       <points>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[data.points, 3]} />
-        </bufferGeometry>
-        <pointsMaterial
-          color="#92f3cf"
-          size={compact ? 0.055 : 0.047}
-          transparent
-          opacity={compact ? 0.48 : 0.58}
-          sizeAttenuation
-          depthWrite={false}
-        />
+        <bufferGeometry><bufferAttribute attach="attributes-position" args={[data.points, 3]} /></bufferGeometry>
+        <pointsMaterial color="#92f3cf" size={compact ? 0.055 : 0.047} transparent opacity={compact ? 0.44 : 0.56} sizeAttenuation depthWrite={false} />
       </points>
-
       <lineSegments>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[data.lines, 3]} />
-        </bufferGeometry>
-        <lineBasicMaterial color="#adb3ff" transparent opacity={compact ? 0.12 : 0.18} depthWrite={false} />
+        <bufferGeometry><bufferAttribute attach="attributes-position" args={[data.lines, 3]} /></bufferGeometry>
+        <lineBasicMaterial color="#adb3ff" transparent opacity={compact ? 0.11 : 0.17} depthWrite={false} />
       </lineSegments>
-
-      <mesh position={[1.25, 0.65, -1.5]}>
-        <sphereGeometry args={[0.72, 20, 20]} />
-        <meshBasicMaterial color="#92f3cf" transparent opacity={0.035} depthWrite={false} />
-      </mesh>
-      <mesh position={[-1.4, -0.65, -1.9]}>
-        <sphereGeometry args={[0.92, 20, 20]} />
-        <meshBasicMaterial color="#adb3ff" transparent opacity={0.03} depthWrite={false} />
-      </mesh>
+      <mesh position={[1.25, 0.65, -1.5]}><sphereGeometry args={[0.72, 16, 16]} /><meshBasicMaterial color="#92f3cf" transparent opacity={0.035} depthWrite={false} /></mesh>
+      <mesh position={[-1.4, -0.65, -1.9]}><sphereGeometry args={[0.92, 16, 16]} /><meshBasicMaterial color="#adb3ff" transparent opacity={0.03} depthWrite={false} /></mesh>
     </group>
   );
 }
 
 export default function HeroNetwork({ reducedMotion = false }: HeroNetworkProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [compact, setCompact] = useState(false);
+  const [active, setActive] = useState(true);
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 720px)');
@@ -127,15 +107,23 @@ export default function HeroNetwork({ reducedMotion = false }: HeroNetworkProps)
     return () => media.removeEventListener('change', sync);
   }, []);
 
+  useEffect(() => {
+    const element = wrapperRef.current;
+    if (!element || !('IntersectionObserver' in window)) return undefined;
+    const observer = new IntersectionObserver(([entry]) => setActive(entry.isIntersecting), { rootMargin: '120px 0px 120px 0px', threshold: 0.01 });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="hero-network-canvas" aria-hidden="true">
+    <div ref={wrapperRef} className="hero-network-canvas" aria-hidden="true">
       <Canvas
-        dpr={compact ? [1, 1.15] : [1, 1.4]}
+        dpr={compact ? [1, 1.1] : [1, 1.4]}
         camera={{ position: [0, 0, 6.2], fov: 52 }}
         gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}
-        frameloop={reducedMotion ? 'demand' : 'always'}
+        frameloop={reducedMotion || !active ? 'demand' : 'always'}
       >
-        <Network compact={compact} reducedMotion={reducedMotion} />
+        <Network compact={compact} reducedMotion={reducedMotion} active={active} />
       </Canvas>
     </div>
   );
