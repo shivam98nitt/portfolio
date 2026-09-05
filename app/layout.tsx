@@ -10,6 +10,8 @@ import "./phase-two.css";
 import "./phase-three.css";
 import "./portfolio-v2.css";
 import "./work-universe.css";
+import "./system-lab.css";
+import "./profile-hub.css";
 import "./chess-nav.css";
 
 const siteUrl = "https://shivam98nitt.github.io";
