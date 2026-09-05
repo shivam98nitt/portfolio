@@ -1,20 +1,17 @@
 'use client';
 
 import Image from 'next/image';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { useState } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import { portfolio } from '@/data/portfolio';
 import HeroNetwork from './hero-network';
 import AISystemVisualization from './ai-system-visualization';
 import CommandPalette from './command-palette';
+import WorkUniverse from './work-universe';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
 export default function InteractiveHome() {
   const reduceMotion = useReducedMotion();
-  const [openProject, setOpenProject] = useState<number | null>(null);
-  const selectedProject = openProject === null ? null : portfolio.work[openProject];
-  const strongestProjects = portfolio.work.slice(0, 3);
   const currentRole = portfolio.experience[0];
 
   return (
@@ -73,26 +70,16 @@ export default function InteractiveHome() {
 
       <section className="v2-section" id="work">
         <header className="v2-stage-head">
-          <div><small>01 / WORK</small><h2>Three projects. Maximum signal.</h2></div>
-          <p>The homepage keeps only the strongest proof. Open a project for deeper architecture, impact and implementation context.</p>
+          <div><small>01 / WORK UNIVERSE</small><h2>Strongest work first. Depth on demand.</h2></div>
+          <p>Three projects anchor the experience. Select one to inspect impact, stack and implementation context; secondary work stays in a compact archive.</p>
         </header>
-        <div className="v2-work-preview">
-          {strongestProjects.map((project, index) => (
-            <button className="v2-work-card" type="button" key={project.title} onClick={() => setOpenProject(index)}>
-              <small>{project.type}</small>
-              <strong>{project.title}</strong>
-              <p>{project.impact.slice(0, 2).join(' · ')}</p>
-              <span>{project.stack.slice(0, 4).join(' · ')} →</span>
-            </button>
-          ))}
-        </div>
-        <div className="v2-section-cta"><span>{portfolio.work.length - strongestProjects.length} more project{portfolio.work.length - strongestProjects.length === 1 ? '' : 's'} available in the deeper work experience.</span><a href={portfolio.personal.github} target="_blank" rel="noreferrer">GitHub archive ↗</a></div>
+        <WorkUniverse reducedMotion={Boolean(reduceMotion)} />
       </section>
 
       <section className="v2-section" id="system">
         <header className="v2-stage-head">
           <div><small>02 / AI SYSTEM LAB</small><h2>How the intelligence becomes a production system.</h2></div>
-          <p>For now this keeps the proven architecture interaction in one concise stage. Phase 3 will unify system, stack and process into one morphing lab.</p>
+          <p>Phase 3 will turn this into one morphing System / Stack / Process lab instead of separate architecture concepts.</p>
         </header>
         <div className="v2-system-preview"><AISystemVisualization reducedMotion={Boolean(reduceMotion)} /></div>
       </section>
@@ -100,7 +87,7 @@ export default function InteractiveHome() {
       <section className="v2-section" id="about">
         <header className="v2-stage-head">
           <div><small>03 / PROFILE</small><h2>About, experience and contact — without another long page.</h2></div>
-          <p>High-signal profile information stays visible; deeper interaction will move into the Profile Hub in Phase 4.</p>
+          <p>High-signal profile information stays visible; deeper interaction moves into the Profile Hub in Phase 4.</p>
         </header>
         <div className="v2-profile-hub">
           <article className="v2-profile-summary">
@@ -121,21 +108,6 @@ export default function InteractiveHome() {
           </div>
         </div>
       </section>
-
-      <AnimatePresence>
-        {selectedProject && openProject !== null && (
-          <motion.div className="project-modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={() => setOpenProject(null)}>
-            <motion.article className="project-modal" role="dialog" aria-modal="true" aria-label={`${selectedProject.title} project details`} initial={reduceMotion ? false : { opacity: 0, y: 24, scale: .985 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 16, scale: .985 }} onMouseDown={(event) => event.stopPropagation()}>
-              <button type="button" className="modal-close" onClick={() => setOpenProject(null)} aria-label="Close project details">×</button>
-              <span className="project-type">{selectedProject.type}</span>
-              <h2>{selectedProject.title}</h2>
-              <p>{selectedProject.description}</p>
-              <div className="modal-grid"><div><small>IMPACT</small><div className="project-impact">{selectedProject.impact.map((impact) => <span key={impact}>{impact}</span>)}</div></div><div><small>STACK</small><div className="stack-cloud compact-stack">{selectedProject.stack.map((tech) => <span key={tech}>{tech}</span>)}</div></div></div>
-              {selectedProject.href && <a className="button primary modal-repo" href={selectedProject.href} target="_blank" rel="noreferrer">View repository <Arrow /></a>}
-            </motion.article>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   );
 }
