@@ -7,6 +7,7 @@ import { useMemo, useState } from 'react';
 import { portfolio } from '@/data/portfolio';
 import { githubProjects } from '@/data/github-projects';
 import HeroNetwork from './hero-network';
+import AISystemVisualization from './ai-system-visualization';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
@@ -134,7 +135,15 @@ export default function InteractiveHome() {
         </div>
       </section>
 
-      <section className="section compact-section" id="work">
+      <section className="section compact-section" id="architecture">
+        <header className="section-head compact-head">
+          <div><span>HOW I BUILD AI SYSTEMS</span><h2>From user intent to production infrastructure.</h2></div>
+          <p>Tap any node to inspect the layer, technologies and production evidence behind the architecture.</p>
+        </header>
+        <AISystemVisualization reducedMotion={Boolean(reduceMotion)} />
+      </section>
+
+      <section className="section compact-section phase-two-projects" id="work">
         <header className="section-head compact-head">
           <div><span>SELECTED WORK</span><h2>Tap a project. Get the details.</h2></div>
           <p>The homepage shows the signal. Deeper technical context opens only when you ask for it.</p>
@@ -142,12 +151,37 @@ export default function InteractiveHome() {
 
         <div className="project-bento">
           {portfolio.work.map((item, index) => (
-            <button type="button" className={`project-tile ${index < 2 ? 'project-tile-large' : ''}`} key={item.title} onClick={() => setOpenProject(index)} data-umami-event="project_click" data-umami-event-project={item.title}>
+            <motion.button
+              layoutId={`project-card-${index}`}
+              type="button"
+              className={`project-tile ${index < 2 ? 'project-tile-large' : ''}`}
+              key={item.title}
+              onClick={() => setOpenProject(index)}
+              data-umami-event="project_click"
+              data-umami-event-project={item.title}
+              onPointerMove={(event) => {
+                if (reduceMotion || event.pointerType === 'touch' || window.innerWidth <= 920) return;
+                const element = event.currentTarget;
+                const rect = element.getBoundingClientRect();
+                const x = (event.clientX - rect.left) / rect.width;
+                const y = (event.clientY - rect.top) / rect.height;
+                const rotateY = (x - 0.5) * 5.5;
+                const rotateX = (0.5 - y) * 4.5;
+                element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                element.style.setProperty('--project-glow-x', `${x * 100}%`);
+                element.style.setProperty('--project-glow-y', `${y * 100}%`);
+              }}
+              onPointerLeave={(event) => {
+                event.currentTarget.style.transform = '';
+                event.currentTarget.style.setProperty('--project-glow-x', '50%');
+                event.currentTarget.style.setProperty('--project-glow-y', '35%');
+              }}
+            >
               <span className="project-type">0{index + 1} · {item.type}</span>
               <strong>{item.title}</strong>
               <div className="project-impact">{item.impact.slice(0, 2).map((impact) => <span key={impact}>{impact}</span>)}</div>
               <div className="project-tile-footer"><span>{item.stack.slice(0, 3).join(' · ')}</span><b>Open ↗</b></div>
-            </button>
+            </motion.button>
           ))}
         </div>
       </section>
@@ -197,9 +231,9 @@ export default function InteractiveHome() {
       </section>
 
       <AnimatePresence>
-        {selectedProject && (
+        {selectedProject && openProject !== null && (
           <motion.div className="project-modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transition} onMouseDown={() => setOpenProject(null)}>
-            <motion.article className="project-modal" role="dialog" aria-modal="true" aria-label={`${selectedProject.title} project details`} initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }} transition={transition} onMouseDown={(event) => event.stopPropagation()}>
+            <motion.article layoutId={`project-card-${openProject}`} className="project-modal" role="dialog" aria-modal="true" aria-label={`${selectedProject.title} project details`} transition={transition} onMouseDown={(event) => event.stopPropagation()}>
               <button type="button" className="modal-close" onClick={() => setOpenProject(null)} aria-label="Close project details">×</button>
               <span className="project-type">{selectedProject.type}</span><h2>{selectedProject.title}</h2><p>{selectedProject.description}</p>
               <div className="modal-grid"><div><small>IMPACT</small><div className="project-impact">{selectedProject.impact.map((impact) => <span key={impact}>{impact}</span>)}</div></div><div><small>STACK</small><div className="stack-cloud compact-stack">{selectedProject.stack.map((tech) => <span key={tech}>{tech}</span>)}</div></div></div>
