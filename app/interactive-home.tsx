@@ -55,7 +55,7 @@ export default function InteractiveHome() {
           <div className="visual-top"><span>PROFILE / 2026</span><i>ACTIVE</i></div>
           <div className="portrait-orbit">
             <div className="avatar profile-avatar">
-              <Image src="/profile-photo.svg" alt="Shivam Singh" fill priority sizes="(max-width: 600px) 88px, 100px" />
+              <Image src="/profile-photo-fixed.svg" alt="Shivam Singh" fill priority sizes="(max-width: 600px) 88px, 100px" />
             </div>
             <div className="ring ring-a"/>
             <div className="ring ring-b"/>
@@ -76,13 +76,7 @@ export default function InteractiveHome() {
         <div className="about-console">
           <div className="tab-list" role="tablist" aria-label="About me tabs">
             {(['about', 'philosophy', 'stack'] as AboutTab[]).map((tab) => (
-              <button
-                key={tab}
-                role="tab"
-                aria-selected={aboutTab === tab}
-                className={aboutTab === tab ? 'active' : ''}
-                onClick={() => setAboutTab(tab)}
-              >
+              <button key={tab} role="tab" aria-selected={aboutTab === tab} className={aboutTab === tab ? 'active' : ''} onClick={() => setAboutTab(tab)}>
                 {tab === 'about' ? 'About' : tab === 'philosophy' ? 'Philosophy' : 'My Stack'}
               </button>
             ))}
@@ -125,14 +119,7 @@ export default function InteractiveHome() {
 
         <div className="project-bento">
           {portfolio.work.map((item, index) => (
-            <button
-              type="button"
-              className={`project-tile ${index < 2 ? 'project-tile-large' : ''}`}
-              key={item.title}
-              onClick={() => setOpenProject(index)}
-              data-umami-event="project_click"
-              data-umami-event-project={item.title}
-            >
+            <button type="button" className={`project-tile ${index < 2 ? 'project-tile-large' : ''}`} key={item.title} onClick={() => setOpenProject(index)} data-umami-event="project_click" data-umami-event-project={item.title}>
               <span className="project-type">0{index + 1} · {item.type}</span>
               <strong>{item.title}</strong>
               <div className="project-impact">{item.impact.slice(0, 2).map((impact) => <span key={impact}>{impact}</span>)}</div>
@@ -150,10 +137,7 @@ export default function InteractiveHome() {
         <div className="github-strip" aria-label="Featured GitHub repositories">
           {featuredGithub.map((project) => (
             <a key={project.href} href={project.href} target="_blank" rel="noreferrer" className="github-chip-card" data-umami-event="project_click" data-umami-event-project={project.name}>
-              <span>REPOSITORY</span>
-              <strong>{project.name}</strong>
-              <p>{project.note}</p>
-              <b>Open GitHub ↗</b>
+              <span>REPOSITORY</span><strong>{project.name}</strong><p>{project.note}</p><b>Open GitHub ↗</b>
             </a>
           ))}
         </div>
@@ -164,7 +148,6 @@ export default function InteractiveHome() {
           <div><span>EXPERIENCE</span><h2>One timeline. Expand when useful.</h2></div>
           <p>Current role and impact stay compact until you want the detail.</p>
         </header>
-
         {portfolio.experience.map((exp) => (
           <article className={`experience-accordion ${experienceOpen ? 'open' : ''}`} key={exp.company}>
             <button type="button" className="experience-summary" onClick={() => setExperienceOpen((value) => !value)} aria-expanded={experienceOpen}>
@@ -172,11 +155,7 @@ export default function InteractiveHome() {
               <div><b>{exp.role}</b><span className="accordion-symbol">{experienceOpen ? '−' : '+'}</span></div>
             </button>
             <AnimatePresence initial={false}>
-              {experienceOpen && (
-                <motion.div className="experience-details" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={transition}>
-                  <ul>{exp.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-                </motion.div>
-              )}
+              {experienceOpen && <motion.div className="experience-details" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={transition}><ul>{exp.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul></motion.div>}
             </AnimatePresence>
           </article>
         ))}
@@ -184,46 +163,23 @@ export default function InteractiveHome() {
 
       <section className="section compact-end-section">
         <div className="compact-contact">
-          <div>
-            <span className="kicker">LET&apos;S BUILD</span>
-            <h2>Have an ambitious AI problem?</h2>
-            <p>Production GenAI, agentic systems, multimodal AI, retrieval, MCP or backend architecture.</p>
-          </div>
+          <div><span className="kicker">LET&apos;S BUILD</span><h2>Have an ambitious AI problem?</h2><p>Production GenAI, agentic systems, multimodal AI, retrieval, MCP or backend architecture.</p></div>
           <div className="compact-contact-actions">
             <a className="button primary" href={`mailto:${portfolio.personal.email}`} data-umami-event="contact_action" data-umami-event-location="compact_contact">Email me <Arrow /></a>
             <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer" data-umami-event="linkedin_click" data-umami-event-location="compact_contact">LinkedIn ↗</a>
             <a href={portfolio.personal.resume} target="_blank" rel="noreferrer" data-umami-event="resume_open" data-umami-event-location="compact_contact">Resume ↗</a>
           </div>
-          <div className="education-inline">
-            <span>Education</span>
-            <strong>{portfolio.education.school}</strong>
-            <small>{portfolio.education.degree} · {portfolio.education.period} · GPA {portfolio.education.gpa}</small>
-          </div>
+          <div className="education-inline"><span>Education</span><strong>{portfolio.education.school}</strong><small>{portfolio.education.degree} · {portfolio.education.period} · GPA {portfolio.education.gpa}</small></div>
         </div>
       </section>
 
       <AnimatePresence>
         {selectedProject && (
           <motion.div className="project-modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transition} onMouseDown={() => setOpenProject(null)}>
-            <motion.article
-              className="project-modal"
-              role="dialog"
-              aria-modal="true"
-              aria-label={`${selectedProject.title} project details`}
-              initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }}
-              transition={transition}
-              onMouseDown={(event) => event.stopPropagation()}
-            >
+            <motion.article className="project-modal" role="dialog" aria-modal="true" aria-label={`${selectedProject.title} project details`} initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }} transition={transition} onMouseDown={(event) => event.stopPropagation()}>
               <button type="button" className="modal-close" onClick={() => setOpenProject(null)} aria-label="Close project details">×</button>
-              <span className="project-type">{selectedProject.type}</span>
-              <h2>{selectedProject.title}</h2>
-              <p>{selectedProject.description}</p>
-              <div className="modal-grid">
-                <div><small>IMPACT</small><div className="project-impact">{selectedProject.impact.map((impact) => <span key={impact}>{impact}</span>)}</div></div>
-                <div><small>STACK</small><div className="stack-cloud compact-stack">{selectedProject.stack.map((tech) => <span key={tech}>{tech}</span>)}</div></div>
-              </div>
+              <span className="project-type">{selectedProject.type}</span><h2>{selectedProject.title}</h2><p>{selectedProject.description}</p>
+              <div className="modal-grid"><div><small>IMPACT</small><div className="project-impact">{selectedProject.impact.map((impact) => <span key={impact}>{impact}</span>)}</div></div><div><small>STACK</small><div className="stack-cloud compact-stack">{selectedProject.stack.map((tech) => <span key={tech}>{tech}</span>)}</div></div></div>
               {selectedProject.href && <a className="button primary modal-repo" href={selectedProject.href} target="_blank" rel="noreferrer">View repository <Arrow /></a>}
             </motion.article>
           </motion.div>
