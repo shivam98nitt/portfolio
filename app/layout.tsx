@@ -7,6 +7,7 @@ import "./ui-polish.css";
 import "./profile-photo.css";
 import "./hero-phase-one.css";
 import "./phase-two.css";
+import "./phase-three.css";
 import "./chess-nav.css";
 
 const siteUrl = "https://shivam98nitt.github.io";
