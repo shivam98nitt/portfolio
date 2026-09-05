@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useMemo, useState } from 'react';
 import { portfolio } from '@/data/portfolio';
 import { githubProjects } from '@/data/github-projects';
+import HeroNetwork from './hero-network';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
@@ -25,7 +26,9 @@ export default function InteractiveHome() {
 
   return (
     <main>
-      <section className="hero section compact-hero">
+      <section className="hero section compact-hero hero-3d-shell">
+        <HeroNetwork reducedMotion={Boolean(reduceMotion)} />
+
         <div className="hero-copy">
           <div className="eyebrow"><span className="status-dot" />Production AI · Backend · Systems</div>
           <h1>Building AI systems that <span>ship, scale & solve.</span></h1>
@@ -51,11 +54,31 @@ export default function InteractiveHome() {
           </div>
         </div>
 
-        <aside className="hero-visual compact-visual">
+        <aside
+          className="hero-visual compact-visual"
+          onPointerMove={(event) => {
+            if (reduceMotion || event.pointerType === 'touch' || window.innerWidth <= 920) return;
+            const element = event.currentTarget;
+            const rect = element.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width;
+            const y = (event.clientY - rect.top) / rect.height;
+            const rotateY = (x - 0.5) * 7;
+            const rotateX = (0.5 - y) * 6;
+            element.style.transform = `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+            element.style.setProperty('--hero-glow-x', `${x * 100}%`);
+            element.style.setProperty('--hero-glow-y', `${y * 100}%`);
+          }}
+          onPointerLeave={(event) => {
+            const element = event.currentTarget;
+            element.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+            element.style.setProperty('--hero-glow-x', '50%');
+            element.style.setProperty('--hero-glow-y', '36%');
+          }}
+        >
           <div className="visual-top"><span>PROFILE / 2026</span><i>ACTIVE</i></div>
           <div className="portrait-orbit">
             <div className="avatar profile-avatar">
-              <Image src="/profile-photo-fixed.svg" alt="Shivam Singh" fill priority sizes="(max-width: 600px) 88px, 100px" />
+              <Image src="/yellow-kurta-profile.jpg" alt="Shivam Singh" fill priority sizes="(max-width: 600px) 88px, 100px" />
             </div>
             <div className="ring ring-a"/>
             <div className="ring ring-b"/>
